@@ -35,3 +35,56 @@ void loop() {
 
 }
 ```
+
+## IO Pins
+
+The board has 8 digital OUTPUT pins and 8 digital INPUT pins both working at 24V logic level. The software sets their mode in the Init function of the library while to write and read the respective functions IO_Write and IO_Read must be called. The INPUT pins and OUTPUT pins have been divided into 2 enum classes for better clarity called InputPin and OutputPin respectively. Both enums range from 1 to 8(meaning the INPUT pins go from IN_1 to IN_8 while the OUTPUT pins go from OUT_1 to OUT_8). The IO_Write and IO_Read functions expect the respective enum of OutputPin or InputPin to be given as a parameter. The function calls to IO_Write and IO_Read look like this:
+```
+ //Writes to a single OUTPUT pin(OUT 4)
+patchugoLite.IO_Write(OutputPin::OUT_4, SET);
+
+ //Reads a single INPUT pin(IN 2)
+ uint8_t readVal = patchugoLite.IO_Read(InputPin::IN_2);
+```
+
+Below is a complete example of writing and reading pins using the library:
+```
+#include <patchugo_lite.h>
+
+
+PatchugoLite patchugoLite;
+
+void setup() {
+
+  //Initialize serial for debug prints
+  Serial.begin(115200);
+  
+  //Initializes all peripherals on the board
+  patchugoLite.Init();
+
+  //Writes to a single OUTPUT pin(OUT 4)
+  patchugoLite.IO_Write(OutputPin::OUT_4, SET);
+  delay(1000);
+  patchugoLite.IO_Write(OutputPin::OUT_4, RESET);
+
+  //Reads a single INPUT pin(IN 2)
+  uint8_t readVal = patchugoLite.IO_Read(InputPin::IN_2);
+
+}
+
+void loop() {
+
+  //Writes 1 to all OUTPUT pins
+  for(uint8_t i = 0; i < patchugoLite.N_OUT_PINS; i++) {
+    patchugoLite.IO_Write(patchugoLite.outputPinsList[i], SET);
+    delay(1000);
+  }
+
+  //Reads all INPUT pins
+  for(uint8_t i = 0; i < patchugoLite.N_IN_PINS; i++) {
+    uint8_t readPin = patchugoLite.IO_Read(patchugoLite.inputPinsList[i]);
+    Serial.printf("READ IN%d:  ", i+1);
+    Serial.print(readPin);
+  }
+}
+```
