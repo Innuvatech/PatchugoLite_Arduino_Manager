@@ -110,7 +110,7 @@ While the library Init function already initializes the Bluetooth in a basic way
      ```
 
    - BT_Set_Mode function to set the Bluetooth operating mode(either COMMAND mode or TRANSPARENT mode). The default operating mode that is set inside the 
-      library Init function is COMMAND mode so if the user does not change the mode after the Init function the bluetooth will keep operating in COMMAND mode. 
+      library Init function is COMMAND mode so if the user does not change the mode after the Init function the bluetooth will keep operating in COMMAND mode.
       Example usage below
      
       ```
@@ -176,7 +176,7 @@ While the library Init function already initializes the Bluetooth in a basic way
   ```
 
 ### Bluetooth receiving data
-Receiving data via Bluetooth with this library is fairly easy. First a function that takes a uint8_t buffer and a uint8_t length must be created. Then that function must be passed to the library BT_Set_RXCallback function, then every time the Bluetooth receives data the user function that was passed to the library will be called. The example usage is provided below
+Receiving data via Bluetooth with this library is fairly easy. First a function that takes a uint8_t buffer and a uint8_t length must be created. Then that function must be passed to the library BT_Set_RXCallback function, then every time the Bluetooth receives data the user function that was passed to the library will be called. It is also really important that in the Loop of the program the BT_Update function is called The example usage is provided below
   ```
   //Define user callback function
   void my_callback(uint8_t buf[], uint8_t len) {
@@ -199,7 +199,67 @@ Receiving data via Bluetooth with this library is fairly easy. First a function 
     Serial.println("TEST DONE");
    
   }
+
+  void loop() {
+    //VERY IMPORTANT! It will not work without this
+    patchugoLite.BT_Update();
+  }
  ```
+
+### Full usage example
+A simple example of complete usage of the Bluetooth features is provided below. The firmware listens for a command of 3 bytes from the bluetooth and if the
+first byte is 0x08 it responds with 105
+
+ ```
+#include <patchugo_lite.h>
+
+PatchugoLite patchugoLite;
+
+void my_callback(uint8_t buf[], uint8_t len) {
+  
+  if(len == 3) {
+    if(buf[0] == 0x08) {
+      Serial.println("Send response");
+      uint8_t response = 105;
+      PatchugoStatusCode checkError = patchugoLite.BT_Write(&response, 1);
+      if(checkError != PatchugoStatusCode::OK) {
+        //Manage error here
+      }
+    }
+  }
+}
+
+void setup() {
+
+  Serial.begin(115200);
+
+  Serial.println("SETUP START");
+  
+  patchugoLite.Init();
+
+  //Change Bluetooth name
+  patchugoLite.BT_Change_Name("CodeSampleBT");
+
+  //Set transparent mode
+  patchugoLite.BT_Set_Mode(BTMode::TRANSPARENT);
+  
+  delay(1000);
+
+  //Set RX callback function
+  patchugoLite.BT_Set_RXCallback(my_callback);
+
+  Serial.println("SETUP DONE");
+ 
+}
+
+void loop() {
+
+  patchugoLite.BT_Update();
+}
+
+ ```
+  
+
    
 
 
