@@ -114,6 +114,14 @@ While the library Init function already initializes the Bluetooth in a basic way
       //Sets Bluetooth to work in TRANSPARENT mode
       patchugoLite.BT_Set_Mode(BTMode::TRANSPARENT);
       ```
-     
+
+    - BT_Change_Name function to change the Bluetooth advertising name. To use this COMMAND the Bluetooth module must be in COMMAND mode. The maximum allowed            length for a name is 20 characters, if a name longer than 20 characters is provided the function will return an error and the Bluetooth name will not be           changed. An error will also be returned if the user tries to change Bluetooth name while in TRANSPARENT mode The default name set inside the library Init          function is "PatchugoLite". Example usage below
+      ```
+       //Changes Bluetooth name to "Apple"
+       PatchugoStatusCode checkError = patchugoLite.BT_Change_Name("Apple");
+       if(checkError != PatchugoStatusCode::OK) {
+        //Manage error here
+       }
+      ```
 
 
