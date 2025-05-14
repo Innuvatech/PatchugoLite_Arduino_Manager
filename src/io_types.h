@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-#ifndef PATCHUGO_INTERNAL_USE
+#ifndef PATCHUGO_IO_TYPES
 #error "io_types.h is private inside the PatchugoLite library and cannot be included in other files!"
 #endif
 

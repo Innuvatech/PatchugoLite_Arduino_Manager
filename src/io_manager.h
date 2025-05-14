@@ -5,9 +5,9 @@
 #error "io_manager.h is private inside the PatchugoLite library and cannot be included in other files!"
 #endif
 
-#define PATCHUGO_INTERNAL_USE
+#define PATCHUGO_IO_TYPES
 #include "io_types.h"
-#undef PATCHUGO_INTERNAL_USE
+#undef PATCHUGO_IO_TYPES
 
 
 /**
