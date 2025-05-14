@@ -88,3 +88,26 @@ void loop() {
   }
 }
 ```
+
+## Bluetooth Management
+
+The board provides the user with a Proteus-E ble module that is easily controllable with this library, with a few lines of code it's possible to completely set up the Bluetooth to send and receive data trough serial.
+
+### Bluetooth setup
+
+While the library Init function already initializes the Bluetooth in a basic way, functions are provided to the user to set the bluetooth up:
+  - BT_Reset function to reset the Bluetooth module. This function is already called inside the library Init function so it can be skipped. Example usage below
+     ```
+     //Resets the bluetooth module
+      patchugoLite.BT_Reset();
+     ```
+     ```
+       patchugoLite.Init();
+
+      //This is unnecessary because the Init function already does it
+      patchugoLite.BT_Reset();
+
+     ```
+     
+
+
