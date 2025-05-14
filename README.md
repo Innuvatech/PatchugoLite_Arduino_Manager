@@ -108,6 +108,12 @@ While the library Init function already initializes the Bluetooth in a basic way
       patchugoLite.BT_Reset();
 
      ```
+
+   - BT_Set_Mode function to set the Bluetooth operating mode(either COMMAND mode or TRANSPARENT mode). The default operating mode that is set inside the library       Init function is COMMAND mode so if the user does not change the mode after the Init function the bluetooth will keep operating in COMMAND mode. Example           usage below
+      ```
+      //Sets Bluetooth to work in TRANSPARENT mode
+      patchugoLite.BT_Set_Mode(BTMode::TRANSPARENT);
+      ```
      
 
 
