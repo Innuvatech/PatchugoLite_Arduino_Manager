@@ -286,6 +286,44 @@ patchugoLite.RS485_Set_Mode(RS485_Mode::TX);
   //Writes "HELLO" trough RS485 serial
   patchugoLite.RS485_Write(test, 5);
 ```
+
+### RS485 Receive data
+
+To receive data trough RS485 serial a few steps are needed. First the RX mode must be set with RS485_Set_Mode otherwise nothing will be receive. Another important thing is to make sure to call the RS485_Update funcion in the main loop to allow the RS485 serial to keep listening. Lastly a user provided function must be set as callback for RX events on the serial. Below is an example
+```
+#include <patchugo_lite.h>
+
+PatchugoLite patchugoLite;
+
+void my_callback(uint8_t buf[], uint8_t len) {
+  //Manage data here
+}
+
+void setup() {
+
+  Serial.begin(115200);
+
+  Serial.println("SETUP START");
+  
+  patchugoLite.Init();
+
+  //Sets mode to RX
+  patchugoLite.RS485_Set_Mode(RS485_Mode::RX);
+
+  //Sets callback function
+  patchugoLite.RS485_Set_RXCallback(my_callback);
+
+
+  Serial.println("SETUP DONE");
+
+}
+
+void loop() {
+
+  patchugoLite.RS485_Update();
+}
+```
+
   
 
    
