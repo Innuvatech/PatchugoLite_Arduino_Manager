@@ -270,6 +270,22 @@ The board has a RS485 serial made available trough the J2 connector. The library
 //Sets mode to TX
 patchugoLite.RS485_Set_Mode(RS485_Mode::TX);
 ```
+- RS485_Write writes trough the RS485 serial. It's important to note that the TX mode must be set before writing otherwise the function will return an error. Below is an example usage
+```
+  //Sets mode to TX
+  patchugoLite.RS485_Set_Mode(RS485_Mode::TX);
+
+  uint8_t test[5] = {0};
+
+  test[0] = 'H';
+  test[1] = 'E';
+  test[2] = 'L';
+  test[3] = 'L';
+  test[4] = 'O';
+
+  //Writes "HELLO" trough RS485 serial
+  patchugoLite.RS485_Write(test, 5);
+```
   
 
    
