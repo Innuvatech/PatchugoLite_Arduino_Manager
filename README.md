@@ -258,6 +258,18 @@ void loop() {
 }
 
  ```
+### RS485
+The board has a RS485 serial made available trough the J2 connector. The library provides a simple api to control it but it's really important to mention that the serial is half-duplex meaning that it can either transmit or receive at a given time but the library provides a simple API so that it's possible to switch modes when there's a need of back and forth communication with another device. The library provides the following functions to control RS485:
+- RS485_Set_Baud sets the baudrate for the serial. This function is called in the library Init function with a default value of 115200 so RS485_Set_Baud can be skipped if there isn't a need to change the baudrate from 115200. Below is an example usage
+```
+ //Sets baudrate to 57600
+ patchugoLite.RS485_Set_Baudrate(RS485_Baud::BAUD_57600);
+```
+- RS485_Set_Mode sets the mode of the serial(RX or TX). In TX mode data will be transmitted but nothing can be received while in RX mode data can be received but nothing can be transmitted. Below is an example usage
+```
+//Sets mode to TX
+patchugoLite.RS485_Set_Mode(RS485_Mode::TX);
+```
   
 
    
