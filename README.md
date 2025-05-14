@@ -174,6 +174,32 @@ While the library Init function already initializes the Bluetooth in a basic way
     //Manage error here
   }
   ```
+
+### Bluetooth receiving data
+Receiving data via Bluetooth with this library is fairly easy. First a function that takes a uint8_t buffer and a uint8_t length must be created. Then that function must be passed to the library BT_Set_RXCallback function, then every time the Bluetooth receives data the user function that was passed to the library will be called. The example usage is provided below
+  ```
+  //Define user callback function
+  void my_callback(uint8_t buf[], uint8_t len) {
+    //Manage data here
+  }
+
+  void setup() {
+  
+    Serial.begin(115200);
+  
+    Serial.println("TEST");
+    
+    patchugoLite.Init();
+  
+    patchugoLite.BT_Set_Mode(BTMode::TRANSPARENT);
+
+    //Sets user function as Bluetooth RX callback
+    patchugoLite.BT_Set_RXCallback(my_callback);
+  
+    Serial.println("TEST DONE");
+   
+  }
+ ```
    
 
 
