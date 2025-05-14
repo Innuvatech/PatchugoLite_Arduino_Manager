@@ -137,8 +137,43 @@ While the library Init function already initializes the Bluetooth in a basic way
         //Manage error here
       }
       ```
-     
 
-      
+   ### Bluetooth Transmitting data
+
+   Data transmission with this library is very easy. To transmit any data the function BT_Write must be called. The function writes a buffer of the specified         length to the Bluetooth module serial to transmit data via Bluetooth. The function only works in TRANSPARENT mode and will return an error if used in COMMAND      mode. Example usage below 
+   
+  ```
+  uint8_t writeData[3] = {0};
+
+  writeData[0] = 1;
+  writeData[1] = 2;
+  writeData[2] = 3;
+
+  //Transmits 3 bytes buffer with Bluetooth
+  PatchugoStatusCode checkError = patchugoLite.BT_Write(writeData, 3);
+
+  if(checkError != PatchugoStatusCode::OK) {
+    //Manage error here
+  }
+  ```
+
+  ```
+ //WRONG!! The transmit will not work in COMMAND mode!
+  patchugoLite.BT_Set_Mode(BTMode::COMMAND);
+
+  uint8_t writeData[3] = {0};
+
+  writeData[0] = 1;
+  writeData[1] = 2;
+  writeData[2] = 3;
+
+  
+  PatchugoStatusCode checkError = patchugoLite.BT_Write(writeData, 3);
+
+  if(checkError != PatchugoStatusCode::OK) {
+    //Manage error here
+  }
+  ```
+   
 
 
