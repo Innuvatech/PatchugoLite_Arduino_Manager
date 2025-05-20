@@ -9,6 +9,7 @@ void PatchugoLite::Init(void) {
     BT_Reset();
     BT_Change_Name("PatchugoLite");
     RS485_Init();
+    spiManager.SPI_Init_CS();
 }
 
 void PatchugoLite::IO_Write(OutputPin pin, FlagStatus status) {
@@ -69,4 +70,16 @@ void PatchugoLite::RS485_Update(void) {
 
 void PatchugoLite::RS485_Set_RXCallback(RS485_RX_Callback callback) {
     serialManager.RS485_Set_RXCallback(callback);
+}
+
+void PatchugoLite::SPI_Init(uint32_t clock, BitOrder order, SPIMode mode) {
+    spiManager.SPI_Init(clock,order,mode);
+}
+
+void PatchugoLite::SPI_Write(uint8_t *data, uint8_t len) {
+    spiManager.SPI_Write(data, len);
+}
+
+void PatchugoLite::SPI_Read(uint8_t reg, uint8_t len, uint8_t *readValue) {
+    spiManager.SPI_Read(reg, len, readValue);
 }

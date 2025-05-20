@@ -5,6 +5,7 @@
 #include "io_manager.h"
 #include "bt_manager.h"
 #include "serial_manager.h"
+#include "spi_manager.h"
 #undef PATCHUGO_INTERNAL_USE
 
 //TODO TOGLIERE SWAP PINS DEBUG
@@ -14,6 +15,7 @@ class PatchugoLite {
         IO_Manager ioManager;
         BT_Manager btManager;
         Serial_Manager serialManager;
+        SPI_Manager spiManager;
     public:
         //Number of 24V IN and OUT pins on the board
         static constexpr uint8_t N_OUT_PINS = 8;
@@ -151,6 +153,33 @@ class PatchugoLite {
         * @param callback Function that will be called on RX
         */
         void RS485_Set_RXCallback(RS485_RX_Callback callback);
+
+        /**
+        * @brief Sets the SPI parameters of communication and reinitializes the SPI
+        * peripheral
+        * 
+        * @param clock Clock value of the SPI in hz
+        * @param order Byte order of data
+        * @param mode Mode of operation of SPI
+        */
+        void SPI_Init(uint32_t clock, BitOrder order, SPIMode mode);
+
+        /**
+        * @brief Writes a buffer trough SPI peripheral
+        * 
+        * @param data Buffer to write trough SPI
+        * @param len Length of the buffer to write
+        */
+        void SPI_Write(uint8_t *data, uint8_t len);
+
+        /**
+        * @brief Reads data from the SPI peripheral
+        * 
+        * @param reg Register address to read(0x00 if there is not any)
+        * @param len Length of the data to read
+        * @param readValue Pointer where data will be stored
+        */
+        void SPI_Read(uint8_t reg, uint8_t len, uint8_t *readValue);
 
 };
 
