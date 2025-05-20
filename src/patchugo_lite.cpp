@@ -3,10 +3,12 @@
 void PatchugoLite::Init(void) {
 
     ioManager.Init_IO_Pins();
+    RS485_Set_Baudrate(RS485_Baud::BAUD_115200);
     BT_Init();
     BT_Set_Mode(BTMode::COMMAND);
     BT_Reset();
     BT_Change_Name("PatchugoLite");
+    RS485_Init();
 }
 
 void PatchugoLite::IO_Write(OutputPin pin, FlagStatus status) {
@@ -43,4 +45,28 @@ void PatchugoLite::BT_Update(void) {
 
 void PatchugoLite::BT_Set_RXCallback(BT_RX_Callback callback){
     btManager.BT_Set_RXCallback(callback);
+}
+
+void PatchugoLite::RS485_Init(void) {
+    serialManager.Init();
+}
+
+void PatchugoLite::RS485_Set_Mode(RS485_Mode mode) {
+    serialManager.RS485_Set_Mode(mode);
+}
+
+void PatchugoLite::RS485_Set_Baudrate(RS485_Baud baudrate) {
+    serialManager.RS485_Set_Baud(baudrate);
+}
+
+void PatchugoLite::RS485_Write(uint8_t *data, uint8_t len) {
+    serialManager.RS485_Write(data, len);
+}
+
+void PatchugoLite::RS485_Update(void) {
+    serialManager.RS485_Update();
+}
+
+void PatchugoLite::RS485_Set_RXCallback(RS485_RX_Callback callback) {
+    serialManager.RS485_Set_RXCallback(callback);
 }

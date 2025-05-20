@@ -4,12 +4,16 @@
 #define PATCHUGO_INTERNAL_USE
 #include "io_manager.h"
 #include "bt_manager.h"
+#include "serial_manager.h"
 #undef PATCHUGO_INTERNAL_USE
+
+//TODO TOGLIERE SWAP PINS DEBUG
 
 class PatchugoLite {
     private:
         IO_Manager ioManager;
         BT_Manager btManager;
+        Serial_Manager serialManager;
     public:
         //Number of 24V IN and OUT pins on the board
         static constexpr uint8_t N_OUT_PINS = 8;
@@ -106,6 +110,47 @@ class PatchugoLite {
         * @param callback Function that will be called on RX
         */
         void BT_Set_RXCallback(BT_RX_Callback callback);
+
+        /**
+        * @brief Initializes RS485 peripheral
+        * 
+        */
+        void RS485_Init(void);
+
+        /**
+         * @brief Sets the RS485 serial to either TX or RX mode
+         * 
+         * @param mode Mode to set(TX or RX)
+         */
+        void RS485_Set_Mode(RS485_Mode mode);
+
+        /**
+        * @brief Sets the baudrate for RS485 serial
+        * 
+        * @param baudrate 
+        */
+        void RS485_Set_Baudrate(RS485_Baud baudrate);
+
+        /**
+        * @brief Writes a buffer trough RS485 serial
+        * 
+        * @param data Buffer to send
+        * @param len Length of the buffer to send
+        */
+        void RS485_Write(uint8_t *data, uint8_t len);
+
+        /**
+        * @brief Checks if RS485 has received anything
+        * 
+        */
+        void RS485_Update(void);
+
+        /**
+        * @brief Sets the callback function to call when an RX event occurred
+        * 
+        * @param callback Function that will be called on RX
+        */
+        void RS485_Set_RXCallback(RS485_RX_Callback callback);
 
 };
 
