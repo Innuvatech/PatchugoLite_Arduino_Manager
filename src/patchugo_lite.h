@@ -6,6 +6,7 @@
 #include "bt_manager.h"
 #include "serial_manager.h"
 #include "spi_manager.h"
+#include "i2c_manager.h"
 #undef PATCHUGO_INTERNAL_USE
 
 //TODO TOGLIERE SWAP PINS DEBUG
@@ -16,6 +17,7 @@ class PatchugoLite {
         BT_Manager btManager;
         Serial_Manager serialManager;
         SPI_Manager spiManager;
+        I2C_Manager i2cManager;
     public:
         //Number of 24V IN and OUT pins on the board
         static constexpr uint8_t N_OUT_PINS = 8;
@@ -180,6 +182,10 @@ class PatchugoLite {
         * @param readValue Pointer where data will be stored
         */
         void SPI_Read(uint8_t reg, uint8_t len, uint8_t *readValue);
+
+        void I2C_Init(uint8_t address);
+        void I2C_Write(uint8_t *data, uint8_t len);
+        void I2C_Read(uint8_t address, uint8_t len, uint8_t *readData);
 
 };
 

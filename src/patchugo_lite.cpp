@@ -83,3 +83,15 @@ void PatchugoLite::SPI_Write(uint8_t *data, uint8_t len) {
 void PatchugoLite::SPI_Read(uint8_t reg, uint8_t len, uint8_t *readValue) {
     spiManager.SPI_Read(reg, len, readValue);
 }
+
+void PatchugoLite::I2C_Init(uint8_t address) {
+    i2cManager.I2C_Init(address);
+}
+
+void PatchugoLite::I2C_Write(uint8_t *data, uint8_t len) {
+    i2cManager.I2C_Write(data, len);
+}
+
+void PatchugoLite::I2C_Read(uint8_t address, uint8_t len, uint8_t *readData) {
+    i2cManager.I2C_Read(address, len, readData);
+}
