@@ -323,7 +323,31 @@ void loop() {
   patchugoLite.RS485_Update();
 }
 ```
+## I2C Communication
+The board has an I2C connection available on pins D16 and D17. The library allows to easily write and read data from I2C peripherals with a few lines of code.
 
-  
+### I2C Communication setup
+The first thing to do to setup the communication with the I2C device is to call the I2C_Init providing the device address as parameter. This will initialize the I2C connection and save the provided address for future communication. A usage example is provided below
+```
+//Initializes I2C with slave address 0x23
+pathcugoLite.I2C_Init(0x23);
+```
+### I2C Write
+To write to the slave device the I2C_Write function must be called providing a pointer to the data to write with the length of the data. Example usage below
+```
+//Writes 0x01 to the slave device
+uint8_t cmd = 0x01;
+pathcugoLite.I2C_Write(&cmd, 1);
 
-   
+//Writes 0x01 and 0x02 to the slave device
+uint8_t cmd[2] = {0x01, 0x02};
+pathcugoLite.I2C_Write(&cmd, 2);
+```
+
+### I2C Read
+To read from the slave device the I2C_Read function must be called providing the address of the slave device, the length of data to read and a pointer where the data will be stored. An example usage is provided below
+```
+//Reads 2 bytes from device with slave address 0x23 and stores them in data
+uint8_t data[2] = {0};
+pathcugoLite.I2C_Read(0x23, 2, data);
+```
