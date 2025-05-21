@@ -351,3 +351,33 @@ To read from the slave device the I2C_Read function must be called providing the
 uint8_t data[2] = {0};
 pathcugoLite.I2C_Read(0x23, 2, data);
 ```
+
+## SPI Communication
+The board has a SPI available on pins D10, D11, D12, D13. The library allows to easily write and read data from SPI devices
+
+## SPI Communication Setup
+The first thing to do to setup the SPI communication is to call the SPI_Init function and specifying the clock speed, byte order and SPI mode. A usage example is provided below
+```
+//Initializes SPI with a clock of 5Mhz, MSBFIRST order and SPI MODE 1(CPOL = 0 CPHA = 1)
+patchugoLite.SPI_Init(5000000, MSBFIRST, SPI_MODE1);
+```
+
+## SPI Write
+To write to the SPI device the SPI_Write function must be called providing a pointer to the data to write and the length of data to write. An example usage is provided below
+```
+//Writes the bytes 0x80 and 0xD0 to the SPI slave device
+cmd[0] = 0x80;
+cmd[1] = 0xD0;
+patchugoLite.SPI_Write(cmd, 2);
+```
+
+## SPI Read
+To read from the SPI slave device the SPI_Read function must be called providing a register address to read(or 0x00 if there isn't any), the length of data to read and a pointer where the data will be stored. An example usage is provided below
+```
+//Reads 2 bytes from register 0x01 and stores them in rawVal
+uint8_t rawVal[2] = {0};
+patchugoLite.SPI_Read(0x01, 2, rawVal);
+```
+
+# Additional considerations
+As of right now the library only allows writing to a single fixed I2C address at a time and it only allows using a single CS pin for SPI that is D10(unless the user creates their own function with another OUT pin). In the near future this will change allowing users more flexibility during developement
