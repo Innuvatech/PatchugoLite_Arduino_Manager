@@ -379,5 +379,126 @@ uint8_t rawVal[2] = {0};
 patchugoLite.SPI_Read(0x01, 2, rawVal);
 ```
 
+# Pin mappings table
+
+Below is the table mapping for all pins and their functions
+
+| STM32 Pin name | Arduino Pin name | Function | PCB Reference |
+| -------------- | ---------------- | -------- | ------------- |
+| PE7            | D0               | GPIO/USART RX | J5 RX |
+| PE8            | D1               | GPIO/USART TX | J5 TX |
+| PB9            | D2               | GPIO      | J5 D2 |
+| PB8            | D3               | GPIO/PWM  | J5 D3 |
+| PA4            | D4               | GPIO      | J5 D4 |
+| PB7            | D5               | GPIO/PWM  | J5 D5 |
+| PB6            | D6               | GPIO/PWM  | J5 D6 |
+| PG0            | D7               | GPIO      | J5 D7 |
+| PG1            | D8               | GPIO      | J5 D8 |
+| PC8            | D9               | GPIO/PWM  | J5 D9 |
+| PA15           | D10              | GPIO/SPI CS/PWM | J5 CS |
+| PB5            | D11              | GPIO/ SPI MOSI/PWM | J5 MOSI |
+| PB4            | D12              | GPIO/SPI MISO/PWM | J5 MISO |
+| PG11           | D13              | GPIO/SPI SCK | J5 SCK |
+| PC9            | D14              | GPIO/I2C SDA | J5 SDA |
+| PA8            | D15              | GPIO/I2C SCL | J5 SCL |
+| PC3_C          | D16              | GPIO | J1 OUT 1 |
+| PC1            | D17              | GPIO | J1 OUT 2 |
+| PF8            | D18              | GPIO | J1 OUT 3 |
+| PF6            | D19              | GPIO | J1 OUT 4 |
+| PF5            | D20              | GPIO | J1 OUT 5 |
+| PF4            | D21              | GPIO | J1 OUT 6 |
+| PF3            | D22              | GPIO | J1 OUT 7 |
+| PF2            | D23              | GPIO | J1 OUT 8 |
+| PF7            | D24              | GPIO | J3 IN 1  |
+| PF1            | D25              | GPIO | J3 IN 2  |
+| PF0            | D26              | GPIO | J3 IN 3  |
+| PE6            | D27              | GPIO | J3 IN 4  |
+| PE5            | D28              | GPIO | J3 IN 5  |
+| PE4            | D29              | GPIO | J3 IN 6  |
+| PE3            | D30              | GPIO | J3 IN 7  |
+| PE2            | D31              | GPIO | J3 IN 8  |
+| PB1            | A0/D32           | GPIO/ANALOG | J25 A0 |
+| PC5            | A1/D33           | GPIO/ANALOG | J25 A1 |
+| PC4            | A2/D34           | GPIO/ANALOG | J25 A2 |
+| PA7            | A3/D35           | GPIO/ANALOG | J25 A3 |
+| PA6            | A4/D36           | GPIO/ANALOG | J25 A4 |
+| PA5            | A5/D37           | GPIO/ANALOG | J25 A5 |
+| PC13           | D38              | NONE        | NC     |
+| PC14           | D39              | NONE        | NC     |
+| PC15           | D40              | NONE        | NC     |
+| PF9            | D41              | FALLING INTERRUPT   | FAULT PIN OF PCB |
+| PF10           | D42              | NONE        | NC     |
+| PH0            | D43              | RESERVED    | RESERVED |
+| PH1            | D44              | NONE        | NC |
+| PC0            | D45              | NONE        | NC |
+| PC2_C          | D46              | NONE        | NC |
+| PA0            | D47              | NONE        | NC |
+| PA1            | D48              | NONE        | NC |
+| PA2            | D49              | NONE        | NC |
+| PA3            | D50              | NONE        | NC |
+| PB0            | D51              | NONE        | NC |
+| PB2            | D52              | NONE        | NC |
+| PF11           | D53              | NONE        | NC |
+| PF12           | D54              | NONE        | NC |
+| PF13           | D55              | NONE        | NC |
+| PF14           | D56              | NONE        | NC |
+| PF15           | D57              | GPIO        | USER LED |
+| PE9            | D58              | NONE        | NC |
+| PE10           | D59              | GPIO/RISING INTERRUPT | USER BTN |
+| PE11           | D60              | NONE        | NC |
+| PE12           | D61              | NONE        | NC |
+| PE13           | D62              | NONE        | NC |
+| PE14           | D63              | NONE        | NC |
+| PE15           | D64              | NONE        | NC |
+| PB10           | D65              | RS485 TX    |    |
+| PB11           | D66              | RS485 RX    |    |
+| PB12           | D67              | NONE        | NC |
+| PB13           | D68              | FLASH SCK   |    |
+| PB14           | D69              | FLASH MISO  |    |
+| PB15           | D70              | FLASH MOSI  |    |
+| PD8            | D71              | NONE        | NC |
+| PD9            | D72              | NONE        | NC |
+| PD10           | D73              | NONE        | NC |
+| PD11           | D74              | NONE        | NC |
+| PD12           | D75              | RS485 DE    |    |
+| PD13           | D76              | NONE        | NC |
+| PD14           | D77              | NONE        | NC |
+| PD15           | D78              | NONE        | NC |
+| PG2            | D79              | NONE        | NC |
+| PG3            | D80              | FLASH CS    |    |
+| PG4            | D81              | NONE        | NC |
+| PG5            | D82              | NONE        | NC |
+| PG6            | D83              | NONE        | NC |
+| PG7            | D84              | NONE        | NC |
+| PG8            | D85              | NONE        | NC |
+| PC6            | D86              | NONE        | NC |
+| PC7            | D87              | NONE        | NC |
+| PA9            | D88              | NONE        | NC |
+| PA10           | D89              | NONE        | NC |
+| PA11           | D90              | DEBUG UART RX |  |
+| PA12           | D91              | DEBUG UART TX |  |
+| PA13           | D92              | NONE        | SWDIO |
+| PA14           | D93              | NONE        | SWCLK |
+| PC10           | D94              | NONE        | NC    |
+| PC11           | D95              | NONE        | NC    |
+| PC12           | D96              | NONE        | NC    |
+| PD0            | D97              | NONE        | NC    |
+| PD1            | D98              | NONE        | NC    |
+| PD2            | D99              | GPIO        | BLE RESET |
+| PD3            | D100             | NONE        | NC    |
+| PD4            | D101             | NONE        | NC    |
+| PD5            | D102             | NONE        | NC    |
+| PD6            | D103             | GPIO        | BLE MODE |
+| PD7            | D104             | NONE        | NC    |
+| PG9            | D105             | BLE RX      |       |
+| PG10           | D106             | NONE        | NC    | 
+| PG12           | D107             | BLE CTS     |       |
+| PG13           | D108             | BLE RTS     |       |
+| PG14           | D109             | BLE TX      |       |
+| PG15           | D110             | NONE        | NC    |
+| PB3            | D111             | NONE        | SWO   |
+| PE0            | D112             | NONE        | NC    |
+| PE1            | D113             | NONE        | NC    |
+
 # Additional considerations
 As of right now the library only allows writing to a single fixed I2C address at a time and it only allows using a single CS pin for SPI that is D10(unless the user creates their own function with another OUT pin). In the near future this will change allowing users more flexibility during developement
