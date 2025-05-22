@@ -10,6 +10,7 @@ enum class PatchugoStatusCode {
     OK,
     ERROR_BT_NAME_LEN,
     ERROR_WRONG_MODE,
+    ERROR_FLASH_STATUS,
 };
 
 #endif
